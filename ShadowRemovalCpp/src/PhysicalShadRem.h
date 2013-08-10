@@ -13,6 +13,7 @@
 
 #include <cxcore.h>
 #include "PhysicalShadRemParams.h"
+#include "ShadowRemover.h"
 #include "Utils/ConnCompGroup.h"
 
 /**
@@ -23,13 +24,13 @@
  * Note that this method requires a training phase where the removeShadows function is
  * called for a sequence of training frames
  */
-class PhysicalShadRem {
+class PhysicalShadRem : public ShadowRemover {
 
 	public:
 		PhysicalShadRem(const PhysicalShadRemParams& params = PhysicalShadRemParams());
 		virtual ~PhysicalShadRem();
 
-		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		virtual void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
 	private:
 		static const float BGR2GRAY[];

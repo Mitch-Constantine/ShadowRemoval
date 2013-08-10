@@ -13,6 +13,7 @@
 
 #include <cxcore.h>
 #include "ChromacityShadRemParams.h"
+#include "ShadowRemover.h"
 
 class ConnCompGroup;
 
@@ -25,7 +26,7 @@ class ConnCompGroup;
  *    Cast shadow segmentation using invariant color features
  *    Salvador et al. (CVIU 2004)
  */
-class ChromacityShadRem {
+class ChromacityShadRem : public ShadowRemover {
 
 	public:
 		ChromacityShadRem(const ChromacityShadRemParams& params = ChromacityShadRemParams());

@@ -9,11 +9,14 @@
 // (see http://www.opensource.org/licenses for more info)
 
 #include <highgui.h>
+#include <iostream>
 #include "ChromacityShadRem.h"
 #include "GeometryShadRem.h"
 #include "LrTextureShadRem.h"
 #include "PhysicalShadRem.h"
 #include "SrTextureShadRem.h"
+
+using namespace std;
 
 int main() {
 	// load frame, background and foreground
@@ -37,6 +40,14 @@ int main() {
 	geo.removeShadows(frame, fg, bg, geoMask);
 	srTex.removeShadows(frame, fg, bg, srTexMask);
 	lrTex.removeShadows(frame, fg, bg, lrTexMask);
+
+	cv::Mat m(100, 100, CV_8UC1);
+	for (int i = 0; i < 100; i++)
+		for (int j = 0; j < 100; j++)
+			m.at<unsigned char>(i,j) = i+j;
+
+	cout << "test" << endl;
+	cout << (int)m.at<unsigned char>(5, 3) << endl;
 
 	// show results
 	cv::imshow("frame", frame);

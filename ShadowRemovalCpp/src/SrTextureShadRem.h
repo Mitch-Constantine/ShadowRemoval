@@ -13,6 +13,7 @@
 
 #include <cxcore.h>
 #include "SrTextureShadRemParams.h"
+#include "ShadowRemover.h"
 #include "Utils/GaborFilter.h"
 
 class ConnCompGroup;
@@ -24,13 +25,13 @@ class ConnCompGroup;
  *
  * The overcomplete Gabor dictionary is used for maximum accuracy
  */
-class SrTextureShadRem {
+class SrTextureShadRem : public ShadowRemover {
 
 	public:
 		SrTextureShadRem(const SrTextureShadRemParams& params = SrTextureShadRemParams());
 		virtual ~SrTextureShadRem();
 
-		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		virtual void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
 	private:
 		SrTextureShadRemParams params;

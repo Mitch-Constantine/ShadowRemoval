@@ -13,6 +13,7 @@
 
 #include <cxcore.h>
 #include "GeometryShadRemParams.h"
+#include "ShadowRemover.h"
 
 class ConnComp;
 
@@ -21,13 +22,13 @@ class ConnComp;
  *    Shadow elimination for effective moving object detection by Gaussian shadow modeling
  *    Hsieh et al. (IVC 2003)
  */
-class GeometryShadRem {
+class GeometryShadRem : public ShadowRemover {
 
 	public:
 		GeometryShadRem(const GeometryShadRemParams& params = GeometryShadRemParams());
 		virtual ~GeometryShadRem();
 
-		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		virtual void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
 	private:
 		GeometryShadRemParams params;

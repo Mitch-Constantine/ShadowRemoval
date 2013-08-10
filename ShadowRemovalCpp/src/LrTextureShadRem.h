@@ -13,6 +13,7 @@
 
 #include <cxcore.h>
 #include "LrTextureShadRemParams.h"
+#include "ShadowRemover.h"
 #include "utils/ConnCompGroup.h"
 
 /**
@@ -22,7 +23,7 @@
  *
  * Extended to split candidate shadow regions using foreground edges
  */
-class LrTextureShadRem {
+class LrTextureShadRem : public ShadowRemover {
 
 	public:
 		cv::Mat candidateShadows;
@@ -42,7 +43,7 @@ class LrTextureShadRem {
 		LrTextureShadRem(const LrTextureShadRemParams& params = LrTextureShadRemParams());
 		virtual ~LrTextureShadRem();
 
-		void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
+		virtual void removeShadows(const cv::Mat& frame, const cv::Mat& fg, const cv::Mat& bg, cv::Mat& srMask);
 
 
 	private:
