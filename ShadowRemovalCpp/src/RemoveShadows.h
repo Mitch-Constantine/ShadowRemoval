@@ -1,6 +1,8 @@
 #ifndef REMOVE_SHADOWS_H_
 #define REMOVE_SHADOWS_H_
 
+#include <cxcore.h>
+
 enum Algorithms
 {
 	Alg_ChromacityShadRem = 1,
@@ -10,6 +12,12 @@ enum Algorithms
 	Alg_LrTextureShadRem = 5
 };
 
-void removeShadows(cv::Mat frame, cv::Mat foreground, cv::Mat background, cv::Mat &foregroundMask, Algorithms algorithm);
+#define Alg_First Alg_ChromacityShadRem
+#define Alg_Last Alg_LrTextureShadRem
+
+void removeShadows(
+	Algorithms algorithm, const cv::Mat &frame, const cv::Mat &foreground, const cv::Mat &background, 
+	cv::Mat &foregroundMask
+);
 
 #endif

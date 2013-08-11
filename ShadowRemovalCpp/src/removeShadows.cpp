@@ -9,7 +9,7 @@
 
 ShadowRemover *getShadowRemover(Algorithms algorithm);
 
-void removeShadows(cv::Mat frame, cv::Mat foreground, cv::Mat background, cv::Mat &foregroundMask, Algorithms algorithm)
+void removeShadows(Algorithms algorithm, const cv::Mat &frame, const cv::Mat &foreground, const cv::Mat &background, cv::Mat &foregroundMask)
 {
 	ShadowRemover *remover = getShadowRemover(algorithm);
 	remover->removeShadows(frame, foreground, background, foregroundMask);
@@ -31,5 +31,5 @@ ShadowRemover *shadowRemovers[] = {
 
 ShadowRemover *getShadowRemover(Algorithms algorithm)
 {
-	return shadowRemovers[algorithm];
+	return shadowRemovers[algorithm-Alg_First];
 }

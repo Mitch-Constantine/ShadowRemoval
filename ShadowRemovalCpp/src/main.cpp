@@ -41,16 +41,25 @@ int main() {
 	srTex.removeShadows(frame, fg, bg, srTexMask);
 	lrTex.removeShadows(frame, fg, bg, lrTexMask);
 
-	cv::Mat m(100, 100, CV_8UC1);
-	for (int i = 0; i < 100; i++)
-		for (int j = 0; j < 100; j++)
-			m.at<unsigned char>(i,j) = i+j;
+	unsigned char min=255, max =0;
+	for (int i = 0; i < fg.rows; i++)
+	{
+		for (int j = 0; j < fg.cols; j++)
+		{
+			unsigned char val = fg.at<unsigned char>(i,j);
+			min = (min < val) ? min : val;
+			max = (max > val) ? max : val;
+		}
+	}
 
-	cout << "test" << endl;
-	cout << (int)m.at<unsigned char>(5, 3) << endl;
+	cout << (int)min << endl << (int)max << endl;
+	/*cout << "Fg" << endl;
+	cout << fg.type() << endl << fg.depth() << endl << fg.channels() << endl << fg.elemSize() << endl << fg.elemSize1() << endl;
 
-	// show results
-	cv::imshow("frame", frame);
+	cout << "Frame" << endl;
+	cout << frame.type() << endl << frame.depth() << endl << frame.channels() << endl << fg.elemSize() << endl << fg.elemSize1() << endl;	// show results
+	*/
+	/*cv::imshow("frame", frame);
 	cv::imshow("bg", bg);
 	cv::imshow("fg", fg);
 	cv::imshow("chr", chrMask);
@@ -60,6 +69,6 @@ int main() {
 	cv::imshow("lrTex", lrTexMask);
 
 	cv::waitKey();
-
+	*/
 	return 0;
 }

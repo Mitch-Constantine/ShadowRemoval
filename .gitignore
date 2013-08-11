@@ -1,3 +1,4 @@
 OpenCV/
+ShadowRemovalCpp/bin/
 *.o
 runsample

@@ -22,7 +22,7 @@ classdef CompositeVideoGenerator
             imageWriter.open();
             
             frames = size(allFrames, 4);
-            if nargin == 2
+            if maxFrames > 0
                 frames = min(frames, maxFrames);
             end
             
